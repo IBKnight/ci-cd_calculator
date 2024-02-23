@@ -4,7 +4,7 @@ class Calculator {
   }
 
   static num substract(num a, num b) {
-    return 0;
+    return a - b;
   }
 
   static num multiply(num a, num b) {
@@ -12,7 +12,10 @@ class Calculator {
   }
 
   static num divide(num a, num b) {
-    return 0;
+    if (b == 0) {
+      return 0;
+    }
+    return a / b;
   }
 
   static num mod(num a, num b) {
@@ -42,5 +45,4 @@ class Calculator {
   static num ceil(num a) {
     return 0;
   }
-
 }

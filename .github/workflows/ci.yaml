@@ -2,9 +2,9 @@ name: Build and Release
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
@@ -24,7 +24,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.1'
+          flutter-version: "3.19.1"
 
       - name: Run Flutter tests
         run: |
@@ -37,7 +37,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      
+
       - name: Cache Flutter SDK
         uses: actions/cache@v2
         with:
@@ -48,14 +48,11 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.1'
+          flutter-version: "3.19.1"
 
       - name: Build Flutter exe
         run: |
           bash scripts/release.bash
-
-      - name: Checkout repository
-        uses: actions/checkout@v3
 
       - name: Create release
         id: create_release
@@ -71,7 +68,7 @@ jobs:
           prerelease: false
 
       - name: Upload release asset
-        id: upload-release-asset
+        id: upload-release-asset 
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

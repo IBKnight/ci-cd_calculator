@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
@@ -31,7 +31,7 @@ jobs:
           bash scripts/run_all_tests.bash
 
   release:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: build
 
     steps:
@@ -50,7 +50,7 @@ jobs:
         with:
           flutter-version: "3.19.1"
 
-      - name: Build Flutter exe
+      - name: Build Flutter apk
         run: |
           bash scripts/release.bash
 
@@ -74,6 +74,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build\windows\x64\runner\Release\ci_cd_calculator.exe
-          asset_name: ci_cd_calculator.exe
+          asset_path: build\app\outputs\flutter-apk\app-release.apk
+          asset_name: app-release.apk
           asset_content_type: application/octet-stream

@@ -44,8 +44,8 @@ class _CalcButtonState extends State<CalcButton> {
           ),
         ),
         child: SizedBox.fromSize(
-          size: Size(getProportionateScreenWidth(130),
-              getProportionateScreenHeight(130)),
+          size: Size(getProportionateScreenWidth(73),
+              getProportionateScreenHeight(70)),
           child: Center(
             child: Text(
               widget.text,

@@ -5,7 +5,7 @@ if [ ! -d "release" ]; then
     mkdir release
 fi
 
-flutter build windows
-cp "build\windows\x64\runner\Release\ci_cd_calculator.exe" "release\ci_cd_calculator.exe"
+flutter build apk
+cp "build\app\outputs\flutter-apk\app-release.apk" "release\app-release.apk"
 
 echo "Shut up ur mouth"

@@ -29,7 +29,9 @@ jobs:
 
     steps:
       - name: Build Flutter exe
-        run: chmod +x scripts/release.bash
+        run: |
+          ls scripts
+          bash scripts/release.bash
 
       - name: Checkout repository
         uses: actions/checkout@v3

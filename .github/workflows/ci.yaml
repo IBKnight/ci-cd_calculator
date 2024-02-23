@@ -20,7 +20,8 @@ jobs:
           flutter-version: '3.19.1'
 
       - name: Run Flutter tests
-        run: chmod +x scripts/release.bash
+        run: |
+          bash scripts/run_all_tests.bash
 
   release:
     runs-on: ubuntu-latest
@@ -28,8 +29,7 @@ jobs:
 
     steps:
       - name: Build Flutter exe
-        run: |
-          bash scripts/release.bash
+        run: chmod +x scripts/release.bash
 
       - name: Checkout repository
         uses: actions/checkout@v3

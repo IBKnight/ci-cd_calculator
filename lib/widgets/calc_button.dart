@@ -11,15 +11,32 @@ class CalcButton extends StatefulWidget {
 }
 
 class _CalcButtonState extends State<CalcButton> {
+  Color btnColor = Colors.white;
+  Color equalColor = Colors.blue;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        widget.callBack;
+        widget.callBack();
+      },
+      onHover: (value) {
+        if (value) {
+          setState(() {
+            equalColor = const Color.fromARGB(255, 29, 127, 207);
+            btnColor = const Color.fromARGB(255, 236, 236, 236);
+          });
+        } else {
+          setState(() {
+            equalColor = Colors.blue;
+
+            btnColor = Colors.white;
+          });
+        }
       },
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: widget.text == '=' ? Colors.blue : Colors.white,
+          color: widget.text == '=' ? equalColor : btnColor,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
             color: Colors.black,

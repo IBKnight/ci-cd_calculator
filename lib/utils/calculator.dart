@@ -1,6 +1,6 @@
 class Calculator {
   static num add(num a, num b) {
-    return 0;
+    return a + b;
   }
 
   static num substract(num a, num b) {
@@ -19,11 +19,11 @@ class Calculator {
     return 0;
   }
 
-  static num sin(num a, num b) {
+  static num sin(num a) {
     return 0;
   }
 
-  static num cos(num a, num b) {
+  static num cos(num a) {
     return 0;
   }
 
@@ -31,23 +31,16 @@ class Calculator {
     return 0;
   }
 
-  static num sqrt(num a, num b) {
+  static num sqrt(num a) {
     return 0;
   }
 
-  static num floor(num a, num b) {
+  static num floor(num a) {
     return 0;
   }
 
-  static num ceil(num a, num b) {
+  static num ceil(num a) {
     return 0;
   }
 
-  static num idiv(num a, num b) {
-    return 0;
-  }
-
-  static num pi(num a, num b) {
-    return 0;
-  }
 }

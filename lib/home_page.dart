@@ -1,8 +1,9 @@
+import 'package:ci_cd_calculator/utils/calculator.dart';
 import 'package:ci_cd_calculator/utils/palette.dart';
 import 'package:ci_cd_calculator/utils/sizer.dart';
+import 'package:ci_cd_calculator/utils/strings.dart';
 import 'package:ci_cd_calculator/widgets/calc_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -12,9 +13,48 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final String text = '';
-  final String operations = '';
+  String text = '';
+  String operations = '';
   SizeConfig sizeConfig = SizeConfig();
+
+  Map<String, Function> functions = {
+    Strings.mod: Calculator.mod,
+    Strings.add: Calculator.add,
+    Strings.subtract: Calculator.substract,
+    Strings.divide: Calculator.divide,
+    Strings.multiply: Calculator.multiply,
+    Strings.pow: Calculator.pow,
+  };
+
+  String formatter(Object value) {
+    return '$value';
+  }
+
+  void addingNumber(String number) {
+    setState(() {
+      if (text.length == 20) {
+        return;
+      }
+
+      if (operations.endsWith(Strings.equal)) {
+        operations = '';
+        text = number;
+      } else if (text.length == 1 && text.startsWith(Strings.zero)) {
+        text = number;
+      } else {
+        text += number;
+      }
+    });
+  }
+
+  void addingOperations(String op) {
+    setState(() {
+      if (text.isNotEmpty) {
+        operations = '$text $op';
+        text = '';
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,29 +66,29 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 32),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: Align(
                   alignment: Alignment.topRight,
                   child: Text(
-                    'Result',
-                    style: TextStyle(
+                    operations,
+                    style: const TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: Colors.grey),
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 32),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: Align(
                   alignment: Alignment.topRight,
                   child: Text(
-                    'Result',
-                    style: TextStyle(
-                        fontSize: 30,
+                    text,
+                    style: const TextStyle(
+                        fontSize: 50,
                         fontWeight: FontWeight.bold,
-                        color: Colors.grey),
+                        color: Colors.black),
                   ),
                 ),
               ),
@@ -56,24 +96,69 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   CalcButton(
-                    text: 'sin',
-                    callBack: () {},
+                    text: Strings.sin,
+                    callBack: () {
+                      setState(() {
+                        if (text.isNotEmpty) {
+                          text = formatter(Calculator.sin(num.parse(text)));
+                          operations = '${Strings.sin}($text)';
+                        } else {
+                          text = formatter(Calculator.sin(0));
+                          operations = '${Strings.sin}(${Strings.zero})';
+                        }
+                      });
+                    },
                   ),
                   CalcButton(
-                    text: 'cos',
-                    callBack: () {},
+                    text: Strings.cos,
+                    callBack: () {
+                      setState(() {
+                        if (text.isNotEmpty) {
+                          text = formatter(Calculator.cos(num.parse(text)));
+                          operations = '${Strings.cos}($text)';
+                        } else {
+                          text = formatter(Calculator.cos(0));
+                          operations = '${Strings.cos}(${Strings.zero})';
+                        }
+                      });
+                    },
                   ),
                   CalcButton(
                     text: 'π',
-                    callBack: () {},
+                    callBack: () {
+                      setState(() {
+                        text = '3.14';
+                      });
+                    },
                   ),
                   CalcButton(
-                    text: 'pow',
-                    callBack: () {},
+                    text: Strings.pow,
+                    callBack: () {
+                      setState(() {
+                        if (text.isNotEmpty) {
+                          operations = '$text ${Strings.pow}';
+                          text = '';
+                        } else {
+                          text = formatter(Calculator.pow(0, 1));
+                          operations =
+                              '${Strings.zero} ${Strings.pow} ${Strings.one})';
+                        }
+                      });
+                    },
                   ),
                   CalcButton(
-                    text: '√',
-                    callBack: () {},
+                    text: Strings.sqrt,
+                    callBack: () {
+                      setState(() {
+                        if (text.isNotEmpty) {
+                          text = formatter(Calculator.sqrt(num.parse(text)));
+                          operations = '${Strings.sqrt}($text)';
+                        } else {
+                          text = formatter(Calculator.sqrt(0));
+                          operations = '${Strings.sqrt}(${Strings.zero})';
+                        }
+                      });
+                    },
                   ),
                 ],
               ),
@@ -81,24 +166,34 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   CalcButton(
-                    text: '7',
-                    callBack: () {},
+                    text: Strings.seven,
+                    callBack: () {
+                      addingNumber(Strings.seven);
+                    },
                   ),
                   CalcButton(
-                    text: '8',
-                    callBack: () {},
+                    text: Strings.eight,
+                    callBack: () {
+                      addingNumber(Strings.eight);
+                    },
                   ),
                   CalcButton(
-                    text: '9',
-                    callBack: () {},
+                    text: Strings.nine,
+                    callBack: () {
+                      addingNumber(Strings.nine);
+                    },
                   ),
                   CalcButton(
-                    text: '÷',
-                    callBack: () {},
+                    text: Strings.divide,
+                    callBack: () {
+                      addingOperations(Strings.divide);
+                    },
                   ),
                   CalcButton(
-                    text: '%',
-                    callBack: () {},
+                    text: Strings.mod,
+                    callBack: () {
+                      addingOperations(Strings.mod);
+                    },
                   ),
                 ],
               ),
@@ -106,20 +201,28 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   CalcButton(
-                    text: '4',
-                    callBack: () {},
+                    text: Strings.four,
+                    callBack: () {
+                      addingNumber(Strings.four);
+                    },
                   ),
                   CalcButton(
-                    text: '5',
-                    callBack: () {},
+                    text: Strings.five,
+                    callBack: () {
+                      addingNumber(Strings.five);
+                    },
                   ),
                   CalcButton(
-                    text: '6',
-                    callBack: () {},
+                    text: Strings.six,
+                    callBack: () {
+                      addingNumber(Strings.six);
+                    },
                   ),
                   CalcButton(
-                    text: '×',
-                    callBack: () {},
+                    text: Strings.multiply,
+                    callBack: () {
+                      addingOperations(Strings.multiply);
+                    },
                   ),
                   CalcButton(
                     text: 'floor',
@@ -131,20 +234,28 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   CalcButton(
-                    text: '1',
-                    callBack: () {},
+                    text: Strings.one,
+                    callBack: () {
+                      addingNumber(Strings.one);
+                    },
                   ),
                   CalcButton(
-                    text: '2',
-                    callBack: () {},
+                    text: Strings.two,
+                    callBack: () {
+                      addingNumber(Strings.two);
+                    },
                   ),
                   CalcButton(
-                    text: '3',
-                    callBack: () {},
+                    text: Strings.three,
+                    callBack: () {
+                      addingNumber(Strings.three);
+                    },
                   ),
                   CalcButton(
-                    text: '-',
-                    callBack: () {},
+                    text: Strings.subtract,
+                    callBack: () {
+                      addingOperations(Strings.subtract);
+                    },
                   ),
                   CalcButton(
                     text: 'ceil',
@@ -157,23 +268,61 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   CalcButton(
                     text: 'AC',
-                    callBack: () {},
+                    callBack: () {
+                      setState(() {
+                        text = '';
+                        operations = '';
+                      });
+                    },
                   ),
                   CalcButton(
-                    text: '0',
-                    callBack: () {},
+                    text: Strings.zero,
+                    callBack: () {
+                      addingNumber(Strings.zero);
+                    },
                   ),
                   CalcButton(
                     text: '.',
-                    callBack: () {},
+                    callBack: () {
+                      setState(() {
+                        if (text.isEmpty) {
+                          text += '0.';
+                        }
+                        if (!text.contains('.')) {
+                          text += '.';
+                        }
+                      });
+                    },
                   ),
                   CalcButton(
-                    text: '+',
-                    callBack: () {},
+                    text: Strings.add,
+                    callBack: () {
+                      addingOperations(Strings.add);
+                    },
                   ),
                   CalcButton(
-                    text: '=',
-                    callBack: () {},
+                    text: Strings.equal,
+                    callBack: () {
+                      setState(() {
+                        if (operations.isNotEmpty && text.isNotEmpty) {
+                          List<String> op = operations.split(' ');
+                          String firstNumber = op[0];
+                          String operation = op[1];
+
+                          operations += ' $text ${Strings.equal}';
+                          text =
+                              '${functions[operation]!(num.parse(firstNumber), num.parse(text))}';
+                        } else if (operations.isNotEmpty) {
+                          List<String> op = operations.split(' ');
+                          String firstNumber = op[0];
+                          String operation = op[1];
+
+                          operations += ' $firstNumber ${Strings.equal}';
+                          text =
+                              '${functions[operation]!(num.parse(firstNumber), num.parse(firstNumber))}';
+                        }
+                      });
+                    },
                   ),
                 ],
               ),

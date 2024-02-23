@@ -20,20 +20,6 @@ class _CalcButtonState extends State<CalcButton> {
       onTap: () {
         widget.callBack();
       },
-      onHover: (value) {
-        if (value) {
-          setState(() {
-            equalColor = const Color.fromARGB(255, 29, 127, 207);
-            btnColor = const Color.fromARGB(255, 236, 236, 236);
-          });
-        } else {
-          setState(() {
-            equalColor = Colors.blue;
-
-            btnColor = Colors.white;
-          });
-        }
-      },
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: widget.text == '=' ? equalColor : btnColor,

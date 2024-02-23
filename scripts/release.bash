@@ -1,11 +1,24 @@
 #!/bin/bash
+
+# Запускаем `flutter pub get` для получения всех зависимостей Flutter.
 flutter pub get
 
+# Проверяем, существует ли папка "release". Если нет, то создаем ее.
 if [ ! -d "release" ]; then
     mkdir release
 fi
 
-flutter build apk
-cp "build\app\outputs\flutter-apk\app-release.apk" "release\app-release.apk"
+# Собираем APK-файл приложения Flutter.
+if ! flutter build apk; then
+    echo "Ошибка при сборке APK. Процесс завершается."
+    exit 1
+fi
 
-echo "Shut up ur mouth"
+# Копируем собранный APK-файл в папку "release".
+if ! cp "build/app/outputs/flutter-apk/app-release.apk" "release/app-release.apk"; then
+    echo "Ошибка при копировании APK. Процесс завершается."
+    exit 1
+fi
+
+# Выводим сообщение о завершении скрипта.
+echo "Your APK is ready in the release directory."

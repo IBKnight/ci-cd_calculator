@@ -39,10 +39,10 @@ class Calculator {
   }
 
   static num floor(num a) {
-    return 0;
+    return a.floor();
   }
 
   static num ceil(num a) {
-    return 0;
+    return a.ceil();
   }
 }

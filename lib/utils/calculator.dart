@@ -8,7 +8,7 @@ class Calculator {
   }
 
   static num multiply(num a, num b) {
-    return 0;
+    return a * b;
   }
 
   static num divide(num a, num b) {
@@ -19,7 +19,7 @@ class Calculator {
   }
 
   static num mod(num a, num b) {
-    return 0;
+    return a % b;
   }
 
   static num sin(num a) {

@@ -11,5 +11,8 @@ void main() {
 
     test('multiply', () => expect(Calculator.multiply(30, 2), 60));
     test('mod', () => expect(Calculator.mod(7, 2), 1));
+
+    test('ceil', () => expect(Calculator.ceil(4.2), 5));
+    test('floor', () => expect(Calculator.floor(3.8), 3));
   });
 }

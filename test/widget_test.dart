@@ -8,5 +8,8 @@ void main() {
 
     test('default divide', () => expect(Calculator.divide(5, 2), 2.5));
     test('division by zero', () => expect(Calculator.divide(5, 0), 0));
+
+    test('multiply', () => expect(Calculator.multiply(30, 2), 60));
+    test('mod', () => expect(Calculator.mod(7, 2), 1));
   });
 }

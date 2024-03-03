@@ -1,4 +1,5 @@
 import 'dart:math';
+
 class Calculator {
   static num add(num a, num b) {
     return a + b;
@@ -12,15 +13,18 @@ class Calculator {
     return a * b;
   }
 
-  static num divide(num a, num b) {
+  static String divide(num a, num b) {
     if (b == 0) {
-      return 0;
+      return 'Division by zero';
     }
-    return a / b;
+    return '${a / b}';
   }
 
-  static num mod(num a, num b) {
-    return a % b;
+  static String mod(num a, num b) {
+    if (b == 0) {
+      return 'Division by zero';
+    }
+    return '${a % b}';
   }
 
   static num sinF(num a) {
@@ -35,8 +39,11 @@ class Calculator {
     return pow(a, b);
   }
 
-  static num sqrtF(num a) {
-    return sqrt(a);
+  static String sqrtF(num a) {
+    if (a < 0) {
+      return 'Sqrt from negative number';
+    } 
+    return '${sqrt(a)}';
   }
 
   static num floor(num a) {

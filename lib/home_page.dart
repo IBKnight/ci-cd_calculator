@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text(
                         text,
                         style: const TextStyle(
-                            fontSize: 50,
+                            fontSize: 40,
                             fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),
@@ -105,10 +105,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             if (text.isNotEmpty) {
                               text =
                                   formatter(Calculator.sinF(num.parse(text)));
-                              operations = '${Strings.sin}($text)';
+                              operations = '${Strings.sin}($text) =';
                             } else {
                               text = formatter(Calculator.sinF(0));
-                              operations = '${Strings.sin}(${Strings.zero})';
+                              operations = '${Strings.sin}(${Strings.zero}) =';
                             }
                           });
                         },
@@ -120,10 +120,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             if (text.isNotEmpty) {
                               text =
                                   formatter(Calculator.cosF(num.parse(text)));
-                              operations = '${Strings.cos}($text)';
+                              operations = '${Strings.cos}($text) =';
                             } else {
                               text = formatter(Calculator.cosF(0));
-                              operations = '${Strings.cos}(${Strings.zero})';
+                              operations = '${Strings.cos}(${Strings.zero}) =';
                             }
                           });
                         },
@@ -146,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             } else {
                               text = formatter(Calculator.powF(0, 1));
                               operations =
-                                  '${Strings.zero} ${Strings.pow} ${Strings.one})';
+                                  '${Strings.zero} ${Strings.pow} ${Strings.one}) =';
                             }
                           });
                         },
@@ -156,12 +156,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         callBack: () {
                           setState(() {
                             if (text.isNotEmpty) {
-                              operations = '${Strings.sqrt}($text)';
+                              operations = '${Strings.sqrt}($text) =';
                               text =
                                   formatter(Calculator.sqrtF(num.parse(text)));
                             } else {
                               text = formatter(Calculator.sqrtF(0));
-                              operations = '${Strings.sqrt}(${Strings.zero})';
+                              operations = '${Strings.sqrt}(${Strings.zero}) =';
                             }
                           });
                         },
@@ -237,7 +237,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             if (text.isNotEmpty) {
                               text =
                                   formatter(Calculator.floor(num.parse(text)));
-                              operations = '${Strings.floor}($text)';
+                              operations = '${Strings.floor}($text) =';
                             }
                           });
                         },
@@ -278,7 +278,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             if (text.isNotEmpty) {
                               text =
                                   formatter(Calculator.ceil(num.parse(text)));
-                              operations = '${Strings.ceil}($text)';
+                              operations = '${Strings.ceil}($text) =';
                             }
                           });
                         },

@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void addingNumber(String number) {
     setState(() {
-      if (text.length == 20) {
+      if (text.length == 11) {
         return;
       }
 
@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text(
                         text,
                         style: const TextStyle(
-                            fontSize: 70,
+                            fontSize: 50,
                             fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),
@@ -154,7 +154,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         callBack: () {
                           setState(() {
                             if (text.isNotEmpty) {
-                              text = formatter(Calculator.sqrt(num.parse(text)));
+                              text =
+                                  formatter(Calculator.sqrt(num.parse(text)));
                               operations = '${Strings.sqrt}($text)';
                             } else {
                               text = formatter(Calculator.sqrt(0));
@@ -229,7 +230,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       CalcButton(
                         text: 'floor',
-                        callBack: () {},
+                        callBack: () {
+                          setState(() {
+                            if (text.isNotEmpty) {
+                              text =
+                                  formatter(Calculator.floor(num.parse(text)));
+                              operations = '${Strings.floor}($text)';
+                            }
+                          });
+                        },
                       ),
                     ],
                   ),
@@ -262,7 +271,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       CalcButton(
                         text: 'ceil',
-                        callBack: () {},
+                        callBack: () {
+                          setState(() {
+                            if (text.isNotEmpty) {
+                              text =
+                                  formatter(Calculator.ceil(num.parse(text)));
+                              operations = '${Strings.ceil}($text)';
+                            }
+                          });
+                        },
                       ),
                     ],
                   ),
@@ -311,7 +328,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               List<String> op = operations.split(' ');
                               String firstNumber = op[0];
                               String operation = op[1];
-            
+
                               operations += ' $text ${Strings.equal}';
                               text =
                                   '${functions[operation]!(num.parse(firstNumber), num.parse(text))}';
@@ -319,7 +336,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               List<String> op = operations.split(' ');
                               String firstNumber = op[0];
                               String operation = op[1];
-            
+
                               operations += ' $firstNumber ${Strings.equal}';
                               text =
                                   '${functions[operation]!(num.parse(firstNumber), num.parse(firstNumber))}';

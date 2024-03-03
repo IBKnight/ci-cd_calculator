@@ -23,11 +23,11 @@ class Calculator {
     return a % b;
   }
 
-  static num sin(num a) {
+  static num sinF(num a) {
     return sin(a);
   }
 
-  static num cos(num a) {
+  static num cosF(num a) {
     return cos(a);
   }
 

@@ -103,10 +103,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         callBack: () {
                           setState(() {
                             if (text.isNotEmpty) {
-                              text = formatter(Calculator.sin(num.parse(text)));
+                              text = formatter(Calculator.sinF(num.parse(text)));
                               operations = '${Strings.sin}($text)';
                             } else {
-                              text = formatter(Calculator.sin(0));
+                              text = formatter(Calculator.sinF(0));
                               operations = '${Strings.sin}(${Strings.zero})';
                             }
                           });
@@ -117,10 +117,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         callBack: () {
                           setState(() {
                             if (text.isNotEmpty) {
-                              text = formatter(Calculator.cos(num.parse(text)));
+                              text = formatter(Calculator.cosF(num.parse(text)));
                               operations = '${Strings.cos}($text)';
                             } else {
-                              text = formatter(Calculator.cos(0));
+                              text = formatter(Calculator.cosF(0));
                               operations = '${Strings.cos}(${Strings.zero})';
                             }
                           });

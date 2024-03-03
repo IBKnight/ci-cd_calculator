@@ -1,3 +1,4 @@
+import 'dart:math';
 class Calculator {
   static num add(num a, num b) {
     return a + b;
@@ -22,12 +23,12 @@ class Calculator {
     return a % b;
   }
 
-  static num sin(num a) {
-    return 0;
+  static num sinF(num a) {
+    return sin(a);
   }
 
-  static num cos(num a) {
-    return 0;
+  static num cosF(num a) {
+    return cos(a);
   }
 
   static num pow(num a, num b) {

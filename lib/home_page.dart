@@ -23,7 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Strings.subtract: Calculator.substract,
     Strings.divide: Calculator.divide,
     Strings.multiply: Calculator.multiply,
-    Strings.pow: Calculator.pow,
+    Strings.pow: Calculator.powF,
   };
 
   String formatter(Object value) {
@@ -103,7 +103,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         callBack: () {
                           setState(() {
                             if (text.isNotEmpty) {
-                              text = formatter(Calculator.sinF(num.parse(text)));
+                              text =
+                                  formatter(Calculator.sinF(num.parse(text)));
                               operations = '${Strings.sin}($text)';
                             } else {
                               text = formatter(Calculator.sinF(0));
@@ -117,7 +118,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         callBack: () {
                           setState(() {
                             if (text.isNotEmpty) {
-                              text = formatter(Calculator.cosF(num.parse(text)));
+                              text =
+                                  formatter(Calculator.cosF(num.parse(text)));
                               operations = '${Strings.cos}($text)';
                             } else {
                               text = formatter(Calculator.cosF(0));
@@ -142,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               operations = '$text ${Strings.pow}';
                               text = '';
                             } else {
-                              text = formatter(Calculator.pow(0, 1));
+                              text = formatter(Calculator.powF(0, 1));
                               operations =
                                   '${Strings.zero} ${Strings.pow} ${Strings.one})';
                             }
@@ -154,11 +156,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         callBack: () {
                           setState(() {
                             if (text.isNotEmpty) {
-                              text =
-                                  formatter(Calculator.sqrt(num.parse(text)));
                               operations = '${Strings.sqrt}($text)';
+                              text =
+                                  formatter(Calculator.sqrtF(num.parse(text)));
                             } else {
-                              text = formatter(Calculator.sqrt(0));
+                              text = formatter(Calculator.sqrtF(0));
                               operations = '${Strings.sqrt}(${Strings.zero})';
                             }
                           });

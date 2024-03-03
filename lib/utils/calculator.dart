@@ -31,12 +31,12 @@ class Calculator {
     return cos(a);
   }
 
-  static num pow(num a, num b) {
-    return 0;
+  static num powF(num a, num b) {
+    return pow(a, b);
   }
 
-  static num sqrt(num a) {
-    return 0;
+  static num sqrtF(num a) {
+    return sqrt(a);
   }
 
   static num floor(num a) {

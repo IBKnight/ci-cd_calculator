@@ -14,5 +14,7 @@ void main() {
 
     test('ceil', () => expect(Calculator.ceil(4.2), 5));
     test('floor', () => expect(Calculator.floor(3.8), 3));
+
+    test('sin', () => expect(Calculator.sin(0), 0));
   });
 }

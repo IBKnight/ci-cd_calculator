@@ -17,5 +17,8 @@ void main() {
 
     test('sin', () => expect(Calculator.sinF(0), 0));
     test('cos', () => expect(Calculator.cosF(0), 1));
+
+    test('pow', () => expect(Calculator.powF(5, 2), 25));
+    test('sqrt', () => expect(Calculator.sqrtF(289), 17));
   });
 }

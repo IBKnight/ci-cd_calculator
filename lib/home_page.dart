@@ -23,7 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Strings.subtract: Calculator.substract,
     Strings.divide: Calculator.divide,
     Strings.multiply: Calculator.multiply,
-    Strings.pow: Calculator.pow,
+    Strings.pow: Calculator.powF,
   };
 
   String formatter(Object value) {
@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void addingNumber(String number) {
     setState(() {
-      if (text.length == 20) {
+      if (text.length == 11) {
         return;
       }
 
@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text(
                         text,
                         style: const TextStyle(
-                            fontSize: 70,
+                            fontSize: 50,
                             fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),
@@ -103,10 +103,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         callBack: () {
                           setState(() {
                             if (text.isNotEmpty) {
-                              text = formatter(Calculator.sin(num.parse(text)));
+                              text =
+                                  formatter(Calculator.sinF(num.parse(text)));
                               operations = '${Strings.sin}($text)';
                             } else {
-                              text = formatter(Calculator.sin(0));
+                              text = formatter(Calculator.sinF(0));
                               operations = '${Strings.sin}(${Strings.zero})';
                             }
                           });
@@ -117,10 +118,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         callBack: () {
                           setState(() {
                             if (text.isNotEmpty) {
-                              text = formatter(Calculator.cos(num.parse(text)));
+                              text =
+                                  formatter(Calculator.cosF(num.parse(text)));
                               operations = '${Strings.cos}($text)';
                             } else {
-                              text = formatter(Calculator.cos(0));
+                              text = formatter(Calculator.cosF(0));
                               operations = '${Strings.cos}(${Strings.zero})';
                             }
                           });
@@ -142,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               operations = '$text ${Strings.pow}';
                               text = '';
                             } else {
-                              text = formatter(Calculator.pow(0, 1));
+                              text = formatter(Calculator.powF(0, 1));
                               operations =
                                   '${Strings.zero} ${Strings.pow} ${Strings.one})';
                             }
@@ -154,10 +156,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         callBack: () {
                           setState(() {
                             if (text.isNotEmpty) {
-                              text = formatter(Calculator.sqrt(num.parse(text)));
                               operations = '${Strings.sqrt}($text)';
+                              text =
+                                  formatter(Calculator.sqrtF(num.parse(text)));
                             } else {
-                              text = formatter(Calculator.sqrt(0));
+                              text = formatter(Calculator.sqrtF(0));
                               operations = '${Strings.sqrt}(${Strings.zero})';
                             }
                           });
@@ -229,7 +232,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       CalcButton(
                         text: 'floor',
-                        callBack: () {},
+                        callBack: () {
+                          setState(() {
+                            if (text.isNotEmpty) {
+                              text =
+                                  formatter(Calculator.floor(num.parse(text)));
+                              operations = '${Strings.floor}($text)';
+                            }
+                          });
+                        },
                       ),
                     ],
                   ),
@@ -262,7 +273,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       CalcButton(
                         text: 'ceil',
-                        callBack: () {},
+                        callBack: () {
+                          setState(() {
+                            if (text.isNotEmpty) {
+                              text =
+                                  formatter(Calculator.ceil(num.parse(text)));
+                              operations = '${Strings.ceil}($text)';
+                            }
+                          });
+                        },
                       ),
                     ],
                   ),
@@ -311,7 +330,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               List<String> op = operations.split(' ');
                               String firstNumber = op[0];
                               String operation = op[1];
-            
+
                               operations += ' $text ${Strings.equal}';
                               text =
                                   '${functions[operation]!(num.parse(firstNumber), num.parse(text))}';
@@ -319,7 +338,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               List<String> op = operations.split(' ');
                               String firstNumber = op[0];
                               String operation = op[1];
-            
+
                               operations += ' $firstNumber ${Strings.equal}';
                               text =
                                   '${functions[operation]!(num.parse(firstNumber), num.parse(firstNumber))}';

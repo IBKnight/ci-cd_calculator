@@ -51,9 +51,38 @@ jobs:
       - name: Build Flutter apk
         run: |
           bash scripts/release.bash
-      
-      - name: Exe
-        run: bash scripts/to_exe.bash
+
+      - name: Check if Inno Setup is installed
+        run: |
+          if not exist "C:\Program Files (x86)\Inno Setup 6\iscc.exe" (
+                echo "Inno Setup is not installed. Installing..."
+                mkdir C:\Temp
+                Invoke-WebRequest -Uri "https://jrsoftware.org/download.php/is.exe" -OutFile "C:\Temp\is.exe"
+                start /wait C:\Temp\is.exe
+              ) else (
+                echo "Inno Setup is already installed."
+              )
+
+      - name: Create Inno Setup script
+        run: |
+          if not exist "innosetup" mkdir innosetup
+          cd release
+          cat <<EOF > innosetup/installer_script.iss
+          [Setup]
+          AppName=epta_calc
+          AppVersion=1.0
+          DefaultDirName=release
+          OutputDir=release
+          OutputBaseFilename=installer
+          Compression=lzma2
+          SolidCompression=yes
+
+          [Files]
+          Source: "release/*"; DestDir: "{app}"
+          EOF
+
+      - name: Build Inno Setup installer
+        run: iscc innosetup/installer_script.iss
 
       - name: Create release
         id: create_release
@@ -69,7 +98,7 @@ jobs:
           prerelease: false
 
       - name: Upload release asset
-        id: upload-release-asset 
+        id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -21,7 +21,7 @@ Compression=lzma2
 SolidCompression=yes
 
 [Files]
-Source: "release\"; DestDir: "{app}"
+Source: ".\release\"; DestDir: "{app}"
 '@ | Out-File -FilePath "innosetup\installer_script.iss"
 
 

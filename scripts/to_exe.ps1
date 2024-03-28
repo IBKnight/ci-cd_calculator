@@ -21,7 +21,7 @@ Compression=lzma2
 SolidCompression=yes
 
 [Files]
-Source: "D:\a\ci_cd_calculator\ci_cd_calculator\release\*"; DestDir: "{app}"
+Source: "D:\a\ci_cd_calculator\ci_cd_calculator\release\*"; DestDir: "{app}" Flags: recursesubdirs
 '@ | Out-File -FilePath "innosetup\installer_script.iss"
 
 

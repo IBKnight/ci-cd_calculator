@@ -1,12 +1,9 @@
-if (not exist ".\innosetup\iscc.exe") {
-    Write-Output "Inno Setup is not installed. Installing..."
-    mkdir .\innosetup
-    Invoke-WebRequest -Uri "https://jrsoftware.org/download.php/is.exe" -OutFile ".\innosetup\is.exe"
-}
-else {
-    Write-Outpute-Output "Inno Setup is already installed."
-}
-    
+
+Write-Output "Inno Setup is not installed. Installing..."
+mkdir .\innosetup
+Invoke-WebRequest -Uri "https://jrsoftware.org/download.php/is.exe" -OutFile ".\innosetup\is.exe"
+Start-Process -FilePath ".\innosetup\is.exe" -Wait
+
 
 if (-not (Test-Path "innosetup")) {
     mkdir innosetup

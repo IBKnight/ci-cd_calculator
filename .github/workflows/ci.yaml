@@ -54,14 +54,14 @@ jobs:
 
       - name: Check if Inno Setup is installed
         run: |
-          if not exist "C:\Program Files (x86)\Inno Setup 6\iscc.exe" (
-                echo "Inno Setup is not installed. Installing..."
-                mkdir C:\Temp
-                Invoke-WebRequest -Uri "https://jrsoftware.org/download.php/is.exe" -OutFile "C:\Temp\is.exe"
-                start /wait C:\Temp\is.exe
-              ) else (
-                echo "Inno Setup is already installed."
-              )
+          if not exist ".\innosetup\iscc.exe" (
+            echo "Inno Setup is not installed. Installing..."
+            mkdir .\innosetup
+            Invoke-WebRequest -Uri "https://jrsoftware.org/download.php/is.exe" -OutFile ".\innosetup\is.exe"
+            start /wait .\innosetup\is.exe
+          ) else (
+            echo "Inno Setup is already installed."
+          )
 
       - name: Create Inno Setup script
         run: |

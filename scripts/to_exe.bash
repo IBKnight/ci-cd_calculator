@@ -13,10 +13,6 @@ if ! command -v iscc &> /dev/null; then
     fi
 fi
 
-if [ ! -d "innosetup" ]; then
-    mkdir innosetup
-fi
-
 # Создание скрипта Inno Setup для установщика
 cat <<EOF > innosetup/installer_script.iss
 [Setup]

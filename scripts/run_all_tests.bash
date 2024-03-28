@@ -7,3 +7,4 @@ if ! flutter test; then
 fi
 
 echo "All tests pust"
+ 

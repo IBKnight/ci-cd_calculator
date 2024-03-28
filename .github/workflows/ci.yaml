@@ -53,36 +53,10 @@ jobs:
           bash scripts/release.bash
 
       - name: Check if Inno Setup is installed
+        shell: pwsh
         run: |
-          if not exist ".\innosetup\iscc.exe" (
-            echo "Inno Setup is not installed. Installing..."
-            mkdir .\innosetup
-            Invoke-WebRequest -Uri "https://jrsoftware.org/download.php/is.exe" -OutFile ".\innosetup\is.exe"
-            start /wait .\innosetup\is.exe
-          ) else (
-            echo "Inno Setup is already installed."
-          )
+          scripts/to_exe.ps1
 
-      - name: Create Inno Setup script
-        run: |
-          if not exist "innosetup" mkdir innosetup
-          cd release
-          cat <<EOF > innosetup/installer_script.iss
-          [Setup]
-          AppName=epta_calc
-          AppVersion=1.0
-          DefaultDirName=release
-          OutputDir=release
-          OutputBaseFilename=installer
-          Compression=lzma2
-          SolidCompression=yes
-
-          [Files]
-          Source: "release/*"; DestDir: "{app}"
-          EOF
-
-      - name: Build Inno Setup installer
-        run: iscc innosetup/installer_script.iss
 
       - name: Create release
         id: create_release

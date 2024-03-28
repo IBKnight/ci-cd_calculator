@@ -2,7 +2,8 @@
 Write-Output "Inno Setup is not installed. Installing..."
 mkdir .\innosetup
 Invoke-WebRequest -Uri "https://jrsoftware.org/download.php/is.exe" -OutFile ".\innosetup\is.exe"
-Start-Process -FilePath ".\innosetup\is.exe" -Wait
+Start-Process -FilePath ".\innosetup\is.exe" -ArgumentList "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART" -Wait
+
 
 
 if (-not (Test-Path "innosetup")) {

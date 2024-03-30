@@ -1,6 +1,5 @@
 # Calculator with GitHub Actions CI/CD
 
-
 # Над проектом работали
 - [Муталибов Алаудин Назирович](https://github.com/KrizzMU)
 - [Бондарев Иван Сергеевич](https://github.com/IBKnight)
